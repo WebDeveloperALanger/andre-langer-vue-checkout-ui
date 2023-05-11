@@ -1,39 +1,26 @@
-// Composables
 import { createRouter, createWebHistory } from 'vue-router'
 import DefaultLayout from "@/layouts/default/DefaultLayout.vue";
-import InitView from "@/views/InitView.vue";
-import WorkflowView from "@/views/WorkflowView.vue";
+import CheckoutView from "@/views/CheckoutView.vue";
+import NotFoundView from "@/views/NotFoundView.vue";
 
 const routes = [
   {
-    path: '/home/',
-    component: () => import('@/layouts/default/Default.vue'),
+    path: '/checkout/',
+    component: DefaultLayout,
     children: [
       {
         path: '',
-        name: 'Home',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "home" */ '@/views/HomeView.vue'),
+        component: NotFoundView,
+      },
+      {
+        path: ':id/',
+        component: CheckoutView,
       },
     ],
   },
   {
-    path: '/',
-    component: DefaultLayout,
-    children: [
-      {
-        path: 'init/:id',
-        name: 'Init',
-        component: InitView,
-      },
-      {
-        path: 'workflow/:id',
-        name: 'Workflow',
-        component: WorkflowView,
-      },
-    ],
+    path: "/:pathMatch(.*)*",
+    component: NotFoundView,
   },
 ]
 

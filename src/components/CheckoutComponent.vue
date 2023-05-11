@@ -8,7 +8,7 @@ import PaymentComponent from "@/components/PaymentComponent.vue";
 const store = useAppStore()
 const route = useRoute()
 onMounted(() => {
-  console.log('onMounted InitComponent', route.params.id)
+  console.log('onMounted CheckoutComponent', route.params.id)
   store.setCheckoutId(route.params.id)
 })
 </script>
